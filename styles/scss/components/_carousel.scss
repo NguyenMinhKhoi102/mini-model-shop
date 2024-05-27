@@ -1,0 +1,81 @@
+.carousel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 0 300px;
+  border: 1px solid orangered;
+  transition: $effect-1;
+  &-item {
+    position: relative;
+    width: 942px;
+    height: 100%;
+    border: 2px solid rgb(69, 93, 20);
+    &.active > .carousel-image {
+      scale: 1;
+    }
+  }
+  &-image {
+    border: 1px solid blueviolet;
+    position: absolute;
+    width: 1028px;
+    scale: 0.7;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: $effect-1;
+  }
+}
+
+// .wrapper {
+//   position: relative;
+//   margin-inline: auto 142px;
+//   height: 690px;
+//   width: 942px;
+
+//   &-btn {
+//     position: absolute;
+//     top: 50%;
+//     transform: translateY(-50%);
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     width: 52px;
+//     height: 52px;
+//     border-radius: 100rem;
+//     background-color: $gray-10;
+//     z-index: 999999;
+//     transition: all 0.6s ease-out;
+//     &__previous {
+//       left: -140px;
+//     }
+//     &__next {
+//       right: -140px;
+//       background-color: $gray-6-alpha-30;
+//     }
+//   }
+
+//   .carousel {
+//     position: absolute;
+//     bottom: -12px;
+//     right: -45px;
+//     // left: 50%;
+//     // transform: translateX(-50%);
+//     display: grid;
+//     grid-auto-flow: column;
+//     // gap: 200px;
+
+//     transform: translateX(calc((1028px + 200px) * 0));
+//     transition: all 0.6s ease-out;
+//     li {
+//       width: 1028px;
+//       transition: all 0.6s ease-out;
+//       transform: scale(0.7);
+//       &.active {
+//         transform: scale(1);
+//       }
+//     }
+//   }
+// }

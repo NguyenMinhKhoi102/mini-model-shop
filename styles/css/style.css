@@ -1,0 +1,271 @@
+@import url("https://db.onlinewebfonts.com/c/8596a172173e3bf6bf5daba5f15fb488?family=MINI+Serif+Regular");
+@import url("https://db.onlinewebfonts.com/c/a854932970a656a7573f56f61b544ea1?family=MINISansSerif-Regular");
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+select,
+textarea {
+  background-color: transparent;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  border: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1;
+}
+
+body {
+  padding-block: 146px 14px;
+  border: 1px solid blue;
+  background-color: #f6f6f6;
+  font-family: "MINISansSerif-Regular";
+}
+
+li {
+  list-style: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  border: 1px solid red;
+  padding: 130px 282px;
+}
+.container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../../assets/images/background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.main {
+  height: 690px;
+  width: 100%;
+  border: 1px solid red;
+}
+
+.title {
+  position: absolute;
+  font-size: 72px;
+  line-height: 1.2;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-family: "MINI Serif Regular";
+}
+
+.wrapper {
+  position: relative;
+  margin-left: auto;
+  height: 100%;
+  width: 942px;
+  right: 0;
+  border: 1px solid blue;
+}
+.wrapper-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1110px;
+}
+.wrapper-btn__previous, .wrapper-btn__next {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 100rem;
+  background: #000;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0 120px;
+  border: 1px solid goldenrod;
+}
+
+.btn {
+  font-family: "MINISansSerif-Regular";
+  border-radius: 100px;
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 400;
+  padding: 16px 32px;
+  width: 282px;
+  text-align: center;
+  display: inline-block;
+  color: #000000;
+  border: 1px solid #262626;
+}
+.btn:hover {
+  color: #ffffff;
+  background-color: #262626;
+}
+.btn-list {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0 24px;
+}
+
+.carousel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 0 300px;
+  border: 1px solid orangered;
+  transition: all 0.6s ease-out;
+}
+.carousel-item {
+  position: relative;
+  width: 942px;
+  height: 100%;
+  border: 2px solid rgb(69, 93, 20);
+}
+.carousel-item.active > .carousel-image {
+  scale: 1;
+}
+.carousel-image {
+  border: 1px solid blueviolet;
+  position: absolute;
+  width: 1028px;
+  scale: 0.7;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.6s ease-out;
+}
+
+.circle {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 580px;
+  height: 580px;
+  border-radius: 100rem;
+  scale: 0;
+  transition: all 0.6s ease-out;
+}
+.circle-item {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 632px;
+  height: 632px;
+}
+.circle-text {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: max-content;
+  rotate: 75deg;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.6s ease-out;
+}
+.circle__orange {
+  background-color: #ed5700;
+}
+.circle__pink {
+  background-color: #f183b2;
+}
+.circle__light-green {
+  background-color: #bbd780;
+}
+.circle__light-blue {
+  background-color: #57c4e5;
+}
+.circle__purple {
+  background-color: #641978;
+}
+.circle__red {
+  background-color: #e6001d;
+}
+
+.progress {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0 16px;
+  height: 24px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+}
+.progress-container {
+  position: relative;
+  background-color: rgba(77, 77, 77, 0.3);
+  border-radius: 100rem;
+  width: 192px;
+  height: 2px;
+  overflow: hidden;
+}
+.progress-occupy {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #262626;
+  width: 16.6666666667%;
+  height: 100%;
+  transition: all 0.6s ease-out;
+}
+.progress-front {
+  transition: all 0.6s ease-out;
+}
+.progress-tail {
+  position: relative;
+}
+.progress-tail div {
+  transition: all 0.6s ease-out;
+}
+.progress-tail div:last-child {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/*# sourceMappingURL=style.css.map */
