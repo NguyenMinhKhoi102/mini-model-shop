@@ -4,6 +4,9 @@
   gap: 80px;
   border: 1px solid red;
   padding: 130px 282px;
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
   &::before {
     content: "";
     position: absolute;
@@ -58,7 +61,12 @@
       width: 52px;
       height: 52px;
       border-radius: 100rem;
-      background: #000;
+      background: $gray-10;
+      cursor: pointer;
+      &.disabled {
+        cursor: unset;
+        background-color: $gray-6-alpha-30;
+      }
     }
   }
 }
@@ -67,6 +75,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0 120px;
   border: 1px solid goldenrod;
+  padding-right: 210px;
 }

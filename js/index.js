@@ -3,7 +3,7 @@ const btnNext = document.querySelector(".wrapper-btn__next");
 
 const circles = document.querySelector(".wrapper-circles");
 const circleList = circles.querySelectorAll("li");
-const carousel = document.querySelector(".carousel");
+const carousel = document.querySelector(".carousel-slider");
 const carouselList = carousel.querySelectorAll("li");
 
 const progressOccupy = document.querySelector(".progress-occupy");
@@ -19,47 +19,68 @@ textActive.style.opacity = "1";
 textActive.style.visibility = "visible";
 textActive.style.rotate = "0deg";
 
+let cloneNodeList = []
+carouselList.forEach((e) => {
+  cloneNodeList.push(e.cloneNode(true));
+});
+
+cloneNodeList.forEach((clone) => {
+  carousel.insertBefore(clone, carousel.firstChild);
+});
+
 let itemListLength = carouselList.length - 1;
 let index = 0;
 
-const checkNext = () => {
-  return index === 0 ? true : false;
+const renderProgress = () => {
+  carouselList.forEach((e, i) => {
+    const li = document.createElement("li");
+    li.innerText = i + 1;
+    i === 0 ? li.classList.add("active") : "";
+    progressFront.appendChild(li);
+  });
+  const tail = document.createElement("li");
+  tail.innerText = carouselList.length;
+  progressTail.appendChild(tail);
 }
 
+renderProgress();
+
+const checkNext = () => {
+  if (index === 0) {
+    btnNext.classList.add("disabled");
+  } else btnNext.classList.remove("disabled");
+}
+
+checkNext();
+
 const rerenderCarousel = () => {
-  let activeIndex = itemListLength - index;
-  let itemWidth = carouselList[activeIndex].offsetWidth;
+  const itemActived = itemListLength - index;
+  let itemWidth = carouselList[0].offsetWidth;
   let space = 300;
   carousel.style.transform = `translateX(${(itemWidth + space) * index}px)`
 
   const lastItemCarouselActive = carousel.querySelector("li.active");
   lastItemCarouselActive.classList.remove("active");
-  carouselList[activeIndex].classList.add("active");
+  const cloneNode = lastItemCarouselActive.cloneNode(true);
+  carousel.children[itemActived].classList.add("active");
+  // carousel.prepend(cloneNode);
+
 
   const circleActive = circles.querySelector("li.active");
   const circleNext = circleList[index];
   circleActive.classList.remove("active");
   circleNext.classList.add("active");
 
+  const progressFrontList = progressFront.querySelectorAll("li");
+  const lastProgressFrontActive = progressFront.querySelector("li.active");
+  const progressTailFirstItem = progressTail.firstElementChild;
   progressOccupy.style.width = `${(index + 1) / carouselList.length * 100}%`;
-  progressFront.innerText = index + 1;
-  if (index === carouselList.length - 1) {
-    progressFront.style.opacity = "0";
-    progressFront.style.visibility = "hidden";
-    progressTail.firstElementChild.style.transform = "translateX(-232px)";
-    progressTail.lastElementChild.style.opacity = "1";
-    progressTail.lastElementChild.style.visibility = "visible";
-  } else {
-    progressFront.innerText = index + 1;
-    progressFront.style.opacity = "1";
-    progressFront.style.visibility = "visible";
-    progressTail.firstElementChild.style.transform = "translateX(0)";
-    progressTail.lastElementChild.style.opacity = "0";
-    progressTail.lastElementChild.style.visibility = "hidden";
-  }
+  lastProgressFrontActive.classList.remove("active");
+  progressFrontList[index].classList.add("active");
+  if (progressTailFirstItem.classList.contains("active")) progressTailFirstItem.classList.remove("active");
+  if (index === carouselList.length - 1) progressTailFirstItem.classList.add("active");
 
-  btnNext.style.backgroundColor = checkNext() ? "#4d4d4d4d" : "#000000";
-
+  checkNext();
 }
 
 const resetCircleState = () => {
@@ -86,7 +107,12 @@ const resetCircleState = () => {
   });
 }
 
+let direction;
+
 btnPrevious.addEventListener("click", () => {
+  direction = 1;
+  carousel.style.justifyContent = "flex-start";
+  carousel.style.transform = `translateX(1242px)`;
   index + 1 > itemListLength ? index = 0 : index++;
   if (index !== 0) {
     const circleItemActive = circles.querySelector("li.active");
@@ -113,6 +139,9 @@ btnPrevious.addEventListener("click", () => {
 });
 
 btnNext.addEventListener("click", () => {
+  direction = -1;
+  carousel.style.justifyContent = "flex-end";
+  carousel.style.transform = `translateX(-1242px)`;
   if (index > 0) {
     index--;
 
@@ -139,79 +168,29 @@ btnNext.addEventListener("click", () => {
     rerenderCarousel();
   } else {
     resetCircleState();
-    btnNext.style.backgroundColor = "#4d4d4d4d";
   }
 });
 
-// btnPrevious.addEventListener("click", () => {
-//   active + 1 > itemListLength ? active = 0 : active++;
-//   rerenderCarousel();
-//   const nextItem = itemActived.nextElementSibling || circleList.firstElementChild;
-//   // if (nextItem != circleList.firstElementChild) {
-//   const nextCircle = nextItem.querySelector(".circle");
-//   const nextText = nextItem.querySelector(".circle-text");
+carousel.addEventListener("transitionend", () => {
+  // if (index === 0) {
+  //   carousel.style.transition = "none";
+  //   carousel.style.transform = "translate(0)";
+  //   carouselList.forEach((e) => {
+  //     carousel.prepend(e);
+  //   })
+  //   console.log(carousel)
+  //   setTimeout(() => {
+  //     carousel.style.transition = "all 0.6s ease-out";
+  //   }, 3000)
+  // }
+  // if (direction === 1)
+  //   carousel.prepend(carousel.lastElementChild);
+  // else if (direction === -1)
+  //   carousel.appendChild(carousel.firstElementChild);
+  // carousel.style.transition = "none";
+  // carousel.style.transform = "translate(0)";
 
-//   progressOccupy.style.width = `${nextItem.dataset.key / 6 * 100}%`
-//   progressFront.innerText = nextItem.dataset.key;
-//   // carousel.style.transform = `translateX(calc((1028px + 200px) * ${nextItem.dataset.key - 1}))`
-//   // if (nextItem.dataset.key == 6) {
-//   //   progressFront.style.opacity = "0";
-//   //   progressFront.style.visibility = "hidden";
-//   //   progressTail.firstElementChild.style.transform = "translateX(-232px)";
-//   //   progressTail.lastElementChild.style.opacity = "1";
-//   //   progressTail.lastElementChild.style.visibility = "visible";
-//   //   carousel.style.transform = `translateX(0)`
-//   // }
-
-
-
-//   circleActive.style.opacity = "0";
-//   circleActive.style.visibility = "hidden";
-//   textActive.style.opacity = "0";
-//   textActive.style.visibility = "hidden";
-//   textActive.style.transform = "rotate(-75deg)";
-
-//   nextCircle.style.transform = "scale(1)";
-//   nextText.style.opacity = "1";
-//   nextText.style.visibility = "visible";
-//   nextText.style.transform = "rotate(0)";
-
-//   itemActived = nextItem;
-//   circleActive = nextCircle;
-//   textActive = nextText;
-//   // } else {
-
-//   // }
-
-// });
-
-// btnNext.addEventListener("click", () => {
-//   const prevItem = itemActived.previousElementSibling;
-//   if (prevItem) {
-//     const prevCircle = prevItem.querySelector(".circle");
-//     const prevText = prevItem.querySelector(".circle-text");
-
-//     progressOccupy.style.width = `${prevItem.dataset.key / 6 * 100}%`;
-//     progressFront.innerText = prevItem.dataset.key;
-
-//     circleActive.style.transform = "scale(0)";
-//     textActive.style.opacity = "0";
-//     textActive.style.visibility = "hidden";
-//     textActive.style.transform = "rotate(75deg)";
-
-//     prevCircle.style.transform = "scale(1)";
-//     prevCircle.style.opacity = "1";
-//     prevCircle.style.visibility = "visible";
-//     prevText.style.opacity = "1";
-//     prevText.style.visibility = "visible";
-//     prevText.style.transform = "rotate(0)";
-
-//     itemActived = prevItem;
-//     circleActive = prevCircle;
-//     textActive = prevText;
-//   } else {
-
-//   }
-
-// });
-
+  // setTimeout(() => {
+  //   carousel.style.transition = "all 0.6s ease-out";
+  // })
+})

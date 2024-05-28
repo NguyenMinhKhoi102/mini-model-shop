@@ -1,15 +1,20 @@
 .carousel {
-  position: absolute;
+  position: relative;
   top: 0;
   right: 0;
   height: 100%;
-  display: grid;
-  grid-auto-flow: column;
-  gap: 0 300px;
+  display: flex;
+  justify-content: flex-end;
   border: 1px solid orangered;
-  transition: $effect-1;
+
+  &-slider {
+    display: flex;
+    gap: 0 300px;
+    transition: $effect-1;
+  }
   &-item {
     position: relative;
+
     width: 942px;
     height: 100%;
     border: 2px solid rgb(69, 93, 20);

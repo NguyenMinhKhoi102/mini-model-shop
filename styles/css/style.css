@@ -58,6 +58,9 @@ li {
   gap: 80px;
   border: 1px solid red;
   padding: 130px 282px;
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
 }
 .container::before {
   content: "";
@@ -111,15 +114,20 @@ li {
   width: 52px;
   height: 52px;
   border-radius: 100rem;
-  background: #000;
+  background: #000000;
+  cursor: pointer;
+}
+.wrapper-btn__previous.disabled, .wrapper-btn__next.disabled {
+  cursor: unset;
+  background-color: rgba(77, 77, 77, 0.3019607843);
 }
 
 .footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0 120px;
   border: 1px solid goldenrod;
+  padding-right: 210px;
 }
 
 .btn {
@@ -140,7 +148,6 @@ li {
   background-color: #262626;
 }
 .btn-list {
-  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -148,14 +155,17 @@ li {
 }
 
 .carousel {
-  position: absolute;
+  position: relative;
   top: 0;
   right: 0;
   height: 100%;
-  display: grid;
-  grid-auto-flow: column;
-  gap: 0 300px;
+  display: flex;
+  justify-content: flex-end;
   border: 1px solid orangered;
+}
+.carousel-slider {
+  display: flex;
+  gap: 0 300px;
   transition: all 0.6s ease-out;
 }
 .carousel-item {
@@ -253,19 +263,44 @@ li {
   transition: all 0.6s ease-out;
 }
 .progress-front {
+  position: relative;
+}
+.progress-front li {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(0, -50%);
+  opacity: 0;
+  visibility: hidden;
   transition: all 0.6s ease-out;
+}
+.progress-front li.active {
+  opacity: 1;
+  visibility: visible;
+}
+.progress-front li.active:last-child {
+  transform: translate(0, -50%);
+}
+.progress-front li:last-child {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(216px, -50%);
 }
 .progress-tail {
   position: relative;
 }
-.progress-tail div {
-  transition: all 0.6s ease-out;
-}
-.progress-tail div:last-child {
+.progress-tail li {
   position: absolute;
-  inset: 0;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
   opacity: 0;
   visibility: hidden;
+  transition: all 0.6s ease-out;
+}
+.progress-tail li.active {
+  opacity: 1;
+  visibility: visible;
 }
 
 /*# sourceMappingURL=style.css.map */
