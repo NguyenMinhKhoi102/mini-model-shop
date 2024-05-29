@@ -19,18 +19,29 @@
 
     width: 632px;
     height: 632px;
-    // &.active {
-    //   .circle {
-    //     scale: 1;
-    //     opacity: 1;
-    //     visibility: visible;
-    //     &-text {
-    //       rotate: 0deg;
-    //       opacity: 1;
-    //       visibility: visible;
-    //     }
-    //   }
-    // }
+    &.active {
+      .circle {
+        scale: 1;
+        opacity: 1;
+        visibility: visible;
+        &-text {
+          opacity: 1;
+          visibility: visible;
+          rotate: 0deg;
+        }
+      }
+    }
+    &.hidden {
+      .circle {
+        opacity: 0;
+        visibility: hidden;
+        &-text {
+          opacity: 0;
+          visibility: hidden;
+          rotate: -75deg;
+        }
+      }
+    }
   }
   &-text {
     position: absolute;

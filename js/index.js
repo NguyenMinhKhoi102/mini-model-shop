@@ -1,196 +1,154 @@
-const btnPrevious = document.querySelector(".wrapper-btn__previous");
-const btnNext = document.querySelector(".wrapper-btn__next");
+const wrapper = document.querySelector(".wrapper");
 
-const circles = document.querySelector(".wrapper-circles");
-const circleList = circles.querySelectorAll("li");
-const carousel = document.querySelector(".carousel-slider");
-const carouselList = carousel.querySelectorAll("li");
+const wrapperCircle = wrapper.querySelector(".wrapper-circles");
+const wrapperCarousel = wrapper.querySelector("#carousel");
+const wrapperBtnPrevious = wrapper.querySelector("#wrapper-btn-previous");
+const wrapperBtnNext = wrapper.querySelector("#wrapper-btn-next");
 
-const progressOccupy = document.querySelector(".progress-occupy");
-const progressFront = document.querySelector(".progress-front");
-const progressTail = document.querySelector(".progress-tail");
+const slider = wrapperCarousel.querySelector(".carousel-slider");
 
-let itemActived = circles.querySelector(".active");
-let circleActive = itemActived.querySelector(".circle");
-let textActive = itemActived.querySelector(".circle-text");
+const sliderList = slider.querySelectorAll("li");
+const circleList = wrapperCircle.querySelectorAll("li");
 
-circleActive.style.scale = "1";
-textActive.style.opacity = "1";
-textActive.style.visibility = "visible";
-textActive.style.rotate = "0deg";
+const progress = document.querySelector(".progress");
 
-let cloneNodeList = []
-carouselList.forEach((e) => {
-  cloneNodeList.push(e.cloneNode(true));
-});
+const progressFront = progress.querySelector(".progress-front");
+const progressOccupy = progress.querySelector(".progress-occupy");
+const progressTail = progress.querySelector(".progress-tail");
 
-cloneNodeList.forEach((clone) => {
-  carousel.insertBefore(clone, carousel.firstChild);
-});
+const initClones = () => {
+  Array.from(sliderList).reverse().forEach((e, i) => {
+    const cloneSliderNode = e.cloneNode(true);
+    const cloneCircleNode = circleList[i].cloneNode(true);
 
-let itemListLength = carouselList.length - 1;
-let index = 0;
+    cloneSliderNode.classList = "carousel-item";
+    cloneCircleNode.classList = "circle-item";
 
-const renderProgress = () => {
-  carouselList.forEach((e, i) => {
+    slider.prepend(cloneSliderNode);
+    wrapperCircle.appendChild(cloneCircleNode);
+
     const li = document.createElement("li");
     li.innerText = i + 1;
     i === 0 ? li.classList.add("active") : "";
     progressFront.appendChild(li);
   });
+
   const tail = document.createElement("li");
-  tail.innerText = carouselList.length;
+  tail.innerText = sliderList.length;
   progressTail.appendChild(tail);
+  progressOccupy.style.width = `${100 / sliderList.length}%`;
 }
 
-renderProgress();
+initClones();
+
+const sliderClone = wrapperCarousel.querySelector(".carousel-slider");
+const sliderListClone = sliderClone.querySelectorAll("li");
+const circleClone = wrapper.querySelector(".wrapper-circles");
+const circleListClone = circleClone.querySelectorAll("li");
+
+let index = 0;
+let limited = sliderList.length;
+let sliderScrollStatus = false;
 
 const checkNext = () => {
-  if (index === 0) {
-    btnNext.classList.add("disabled");
-  } else btnNext.classList.remove("disabled");
+  index === 0 ? wrapperBtnNext.classList.add("disabled") : wrapperBtnNext.classList.remove("disabled");
 }
 
 checkNext();
 
-const rerenderCarousel = () => {
-  const itemActived = itemListLength - index;
-  let itemWidth = carouselList[0].offsetWidth;
-  let space = 300;
-  carousel.style.transform = `translateX(${(itemWidth + space) * index}px)`
+const resetAnimation = () => {
+  // reset slider
+  let sliderItems = Array.from(sliderClone.children);
+  let circleItems = Array.from(circleClone.children);
+  let midIndex = Math.floor(sliderItems.length / 2);
+  let firstHalfSliders = sliderItems.slice(0, midIndex);
+  let lastHalfSliders = sliderItems.slice(midIndex);
+  let firstHalfCircles = circleItems.slice(0, midIndex);
 
-  const lastItemCarouselActive = carousel.querySelector("li.active");
+  setTimeout(() => {
+    lastHalfSliders.forEach(e => {
+      sliderClone.insertBefore(e, firstHalfSliders[0]);
+    });
+    sliderClone.style.transition = "none";
+    sliderClone.style.transform = "translateX(0)";
+
+    firstHalfCircles.forEach(e => {
+      e.style.transition = "none";
+      e.classList = "circle-item";
+      circleClone.appendChild(e);
+    })
+    index = 0;
+    checkNext();
+  }, 600);
+
+  // reset progress
+  progressOccupy.style.width = "0";
+  progressTail.firstElementChild.classList.remove("active");
+}
+
+const rerenderCarousel = (btnType) => {
+  if (btnType === "previous") {
+    circleClone.children[index++].classList.add("hidden");
+    circleClone.children[index].classList.add("active");
+  } else if (btnType === "next" && index > 0) {
+    circleClone.children[index--].classList.remove("active");
+    circleClone.children[index].classList.remove("hidden");
+  }
+
+  const itemWidth = sliderList[0].offsetWidth;
+  const space = 300;
+
+  sliderClone.style.transition = "all 0.6s ease-out";
+  sliderClone.style.transform = `translateX(${(itemWidth + space) * index}px)`;
+
+  const lastItemCarouselActive = sliderClone.querySelector("li.active");
+
   lastItemCarouselActive.classList.remove("active");
-  const cloneNode = lastItemCarouselActive.cloneNode(true);
-  carousel.children[itemActived].classList.add("active");
-  // carousel.prepend(cloneNode);
+  sliderClone.children[sliderListClone.length - index - 1].classList.add("active");
 
-
-  const circleActive = circles.querySelector("li.active");
-  const circleNext = circleList[index];
-  circleActive.classList.remove("active");
-  circleNext.classList.add("active");
-
-  const progressFrontList = progressFront.querySelectorAll("li");
-  const lastProgressFrontActive = progressFront.querySelector("li.active");
-  const progressTailFirstItem = progressTail.firstElementChild;
-  progressOccupy.style.width = `${(index + 1) / carouselList.length * 100}%`;
-  lastProgressFrontActive.classList.remove("active");
-  progressFrontList[index].classList.add("active");
-  if (progressTailFirstItem.classList.contains("active")) progressTailFirstItem.classList.remove("active");
-  if (index === carouselList.length - 1) progressTailFirstItem.classList.add("active");
+  index < limited || resetAnimation();
 
   checkNext();
 }
 
-const resetCircleState = () => {
-  circleList.forEach((e, i) => {
-    const circle = e.querySelector(".circle");
-    const text = e.querySelector(".circle-text");
-    if (i === index) {
-      circle.style.opacity = "1";
-      circle.style.visibility = "visible";
-      circle.style.scale = "1";
+const rerenderProgress = () => {
+  const progressFrontList = progressFront.querySelectorAll("li");
+  const lastProgressFrontActive = progressFront.querySelector("li.active");
 
-      text.style.opacity = "1";
-      text.style.visibility = "visible";
-      text.style.rotate = "0deg";
-    } else {
-      circle.style.opacity = "1";
-      circle.style.visibility = "visible";
-      circle.style.scale = "0";
-
-      text.style.opacity = "0";
-      text.style.visibility = "hidden";
-      text.style.rotate = "75deg";
-    }
-  });
+  progressOccupy.style.width = `${(index + 1) / sliderList.length * 100}%`;
+  lastProgressFrontActive.classList.remove("active");
+  progressFrontList[index % sliderList.length].classList.add("active");
+  index !== sliderList.length - 1 || progressTail.firstElementChild.classList.add("active");
 }
 
-let direction;
+const preventContiniousPressing = (button, handleBtnWrapper) => {
+  if (sliderScrollStatus) return;
+  sliderScrollStatus = true;
+  button.removeEventListener('click', handleBtnWrapper);
+  setTimeout(() => {
+    sliderScrollStatus = false;
+    button.addEventListener('click', handleBtnWrapper);
+  }, 600);
+};
 
-btnPrevious.addEventListener("click", () => {
-  direction = 1;
-  carousel.style.justifyContent = "flex-start";
-  carousel.style.transform = `translateX(1242px)`;
-  index + 1 > itemListLength ? index = 0 : index++;
-  if (index !== 0) {
-    const circleItemActive = circles.querySelector("li.active");
-    const circleItemNext = circleList[index];
-
-    const circleActive = circleItemActive.querySelector(".circle");
-    const textActive = circleItemActive.querySelector(".circle-text");
-    const circleNext = circleItemNext.querySelector(".circle");
-    const textNext = circleItemNext.querySelector(".circle-text");
-
-    circleActive.style.opacity = "0";
-    circleActive.style.visibility = "hidden";
-    textActive.style.opacity = "0";
-    textActive.style.visibility = "hidden";
-    textActive.style.rotate = "-75deg";
-
-    circleNext.style.scale = "1";
-    textNext.style.opacity = "1";
-    textNext.style.visibility = "visible";
-    textNext.style.rotate = "0deg";
-  } else resetCircleState();
-
-  rerenderCarousel();
-});
-
-btnNext.addEventListener("click", () => {
-  direction = -1;
-  carousel.style.justifyContent = "flex-end";
-  carousel.style.transform = `translateX(-1242px)`;
-  if (index > 0) {
-    index--;
-
-    const circleItemActive = circles.querySelector("li.active");
-    const circleItemPrev = circleList[index];
-
-    const circleActive = circleItemActive.querySelector(".circle");
-    const textActive = circleItemActive.querySelector(".circle-text");
-    const circlePrev = circleItemPrev.querySelector(".circle");
-    const textPrev = circleItemPrev.querySelector(".circle-text");
-
-    circleActive.style.scale = "0";
-    textActive.style.opacity = "0";
-    textActive.style.visibility = "hidden";
-    textActive.style.rotate = "75deg";
-
-    circlePrev.style.scale = "1";
-    circlePrev.style.opacity = "1";
-    circlePrev.style.visibility = "visible";
-    textPrev.style.opacity = "1";
-    textPrev.style.visibility = "visible";
-    textPrev.style.rotate = "0deg";
-
-    rerenderCarousel();
-  } else {
-    resetCircleState();
+const handleBtnWrapper = (btnType) => {
+  switch (btnType) {
+    case "previous":
+      preventContiniousPressing(wrapperBtnPrevious, handlePreviousClick);
+      break;
+    case "next":
+      preventContiniousPressing(wrapperBtnNext, handleNextClick);
+      break;
+    default:
+      break;
   }
-});
+  rerenderCarousel(btnType);
+  rerenderProgress();
+};
 
-carousel.addEventListener("transitionend", () => {
-  // if (index === 0) {
-  //   carousel.style.transition = "none";
-  //   carousel.style.transform = "translate(0)";
-  //   carouselList.forEach((e) => {
-  //     carousel.prepend(e);
-  //   })
-  //   console.log(carousel)
-  //   setTimeout(() => {
-  //     carousel.style.transition = "all 0.6s ease-out";
-  //   }, 3000)
-  // }
-  // if (direction === 1)
-  //   carousel.prepend(carousel.lastElementChild);
-  // else if (direction === -1)
-  //   carousel.appendChild(carousel.firstElementChild);
-  // carousel.style.transition = "none";
-  // carousel.style.transform = "translate(0)";
+const handlePreviousClick = () => handleBtnWrapper("previous");
+const handleNextClick = () => handleBtnWrapper("next");
 
-  // setTimeout(() => {
-  //   carousel.style.transition = "all 0.6s ease-out";
-  // })
-})
+wrapperBtnPrevious.addEventListener("click", handlePreviousClick);
+wrapperBtnNext.addEventListener("click", handleNextClick);
+

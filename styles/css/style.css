@@ -43,7 +43,6 @@ body {
 
 body {
   padding-block: 146px 14px;
-  border: 1px solid blue;
   background-color: #f6f6f6;
   font-family: "MINISansSerif-Regular";
 }
@@ -56,7 +55,6 @@ li {
   display: flex;
   flex-direction: column;
   gap: 80px;
-  border: 1px solid red;
   padding: 130px 282px;
   max-width: 1920px;
   width: 100%;
@@ -77,7 +75,6 @@ li {
 .main {
   height: 690px;
   width: 100%;
-  border: 1px solid red;
 }
 
 .title {
@@ -95,7 +92,6 @@ li {
   height: 100%;
   width: 942px;
   right: 0;
-  border: 1px solid blue;
 }
 .wrapper-btn {
   position: absolute;
@@ -121,12 +117,19 @@ li {
   cursor: unset;
   background-color: rgba(77, 77, 77, 0.3019607843);
 }
+.wrapper-carousel {
+  position: relative;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
 
 .footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid goldenrod;
   padding-right: 210px;
 }
 
@@ -154,31 +157,19 @@ li {
   gap: 0 24px;
 }
 
-.carousel {
-  position: relative;
-  top: 0;
-  right: 0;
-  height: 100%;
-  display: flex;
-  justify-content: flex-end;
-  border: 1px solid orangered;
-}
 .carousel-slider {
   display: flex;
   gap: 0 300px;
-  transition: all 0.6s ease-out;
 }
 .carousel-item {
   position: relative;
   width: 942px;
   height: 100%;
-  border: 2px solid rgb(69, 93, 20);
 }
 .carousel-item.active > .carousel-image {
   scale: 1;
 }
 .carousel-image {
-  border: 1px solid blueviolet;
   position: absolute;
   width: 1028px;
   scale: 0.7;
@@ -205,6 +196,25 @@ li {
   transform: translateY(-50%);
   width: 632px;
   height: 632px;
+}
+.circle-item.active .circle {
+  scale: 1;
+  opacity: 1;
+  visibility: visible;
+}
+.circle-item.active .circle-text {
+  opacity: 1;
+  visibility: visible;
+  rotate: 0deg;
+}
+.circle-item.hidden .circle {
+  opacity: 0;
+  visibility: hidden;
+}
+.circle-item.hidden .circle-text {
+  opacity: 0;
+  visibility: hidden;
+  rotate: -75deg;
 }
 .circle-text {
   position: absolute;
@@ -258,7 +268,6 @@ li {
   top: 0;
   left: 0;
   background-color: #262626;
-  width: 16.6666666667%;
   height: 100%;
   transition: all 0.6s ease-out;
 }
