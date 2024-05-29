@@ -56,37 +56,7 @@ const checkNext = () => {
 
 checkNext();
 
-const resetAnimation = () => {
-  // reset slider
-  let sliderItems = Array.from(sliderClone.children);
-  let circleItems = Array.from(circleClone.children);
-  let midIndex = Math.floor(sliderItems.length / 2);
-  let firstHalfSliders = sliderItems.slice(0, midIndex);
-  let lastHalfSliders = sliderItems.slice(midIndex);
-  let firstHalfCircles = circleItems.slice(0, midIndex);
-
-  setTimeout(() => {
-    lastHalfSliders.forEach(e => {
-      sliderClone.insertBefore(e, firstHalfSliders[0]);
-    });
-    sliderClone.style.transition = "none";
-    sliderClone.style.transform = "translateX(0)";
-
-    firstHalfCircles.forEach(e => {
-      e.style.transition = "none";
-      e.classList = "circle-item";
-      circleClone.appendChild(e);
-    })
-    index = 0;
-    checkNext();
-  }, 600);
-
-  // reset progress
-  progressOccupy.style.width = "0";
-  progressTail.firstElementChild.classList.remove("active");
-}
-
-const rerenderCarousel = (btnType) => {
+const rerenderCarousel = async (btnType) => {
   if (btnType === "previous") {
     circleClone.children[index++].classList.add("hidden");
     circleClone.children[index].classList.add("active");
@@ -106,12 +76,11 @@ const rerenderCarousel = (btnType) => {
   lastItemCarouselActive.classList.remove("active");
   sliderClone.children[sliderListClone.length - index - 1].classList.add("active");
 
-  index < limited || resetAnimation();
-
   checkNext();
 }
 
 const rerenderProgress = () => {
+  console.log(index);
   const progressFrontList = progressFront.querySelectorAll("li");
   const lastProgressFrontActive = progressFront.querySelector("li.active");
 
@@ -119,6 +88,35 @@ const rerenderProgress = () => {
   lastProgressFrontActive.classList.remove("active");
   progressFrontList[index % sliderList.length].classList.add("active");
   index !== sliderList.length - 1 || progressTail.firstElementChild.classList.add("active");
+}
+
+const resetAnimation = () => {
+  // reset slider
+  let sliderItems = Array.from(sliderClone.children);
+  let circleItems = Array.from(circleClone.children);
+  let midIndex = Math.floor(sliderItems.length / 2);
+  let firstHalfSliders = sliderItems.slice(0, midIndex);
+  let lastHalfSliders = sliderItems.slice(midIndex);
+  let firstHalfCircles = circleItems.slice(0, midIndex);
+
+  setTimeout(() => {
+    lastHalfSliders.forEach(e => {
+      sliderClone.insertBefore(e, firstHalfSliders[0]);
+    });
+    sliderClone.style.transition = "none";
+    sliderClone.style.transform = "translateX(0)";
+
+    firstHalfCircles.forEach(e => {
+      e.classList = "circle-item";
+      circleClone.appendChild(e);
+    })
+    index = 0;
+    checkNext();
+  }, 600);
+
+  // reset progress
+  progressOccupy.style.width = "0";
+  progressTail.firstElementChild.classList.remove("active");
 }
 
 const preventContiniousPressing = (button, handleBtnWrapper) => {
@@ -144,6 +142,7 @@ const handleBtnWrapper = (btnType) => {
   }
   rerenderCarousel(btnType);
   rerenderProgress();
+  index < limited || resetAnimation();
 };
 
 const handlePreviousClick = () => handleBtnWrapper("previous");

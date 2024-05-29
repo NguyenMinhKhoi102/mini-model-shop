@@ -72,3 +72,16 @@
     }
   }
 }
+
+@media only screen and (max-width: $sm) {
+  .progress {
+    &-container {
+      width: calc(100vw - 180px);
+    }
+    &-front {
+      li:last-child {
+        transform: translate(calc(100vw - 155px), -50%);
+      }
+    }
+  }
+}

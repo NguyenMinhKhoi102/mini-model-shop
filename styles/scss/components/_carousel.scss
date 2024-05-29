@@ -8,13 +8,11 @@
 
     width: 942px;
     height: 100%;
-    // border: 2px solid rgb(69, 93, 20);
     &.active > .carousel-image {
       scale: 1;
     }
   }
   &-image {
-    // border: 1px solid blueviolet;
     position: absolute;
     width: 1028px;
     scale: 0.7;
@@ -22,5 +20,34 @@
     left: 50%;
     transform: translateX(-50%);
     transition: $effect-1;
+  }
+}
+
+@media only screen and (max-width: $xl) {
+  .carousel {
+    &-item {
+      width: 762px;
+    }
+    &-image {
+      width: 100%;
+      bottom: 0;
+    }
+  }
+}
+
+@media only screen and (max-width: $md) {
+  .carousel {
+    &-item {
+      bottom: 10%;
+      width: 550px;
+    }
+  }
+}
+
+@media only screen and (max-width: $sm) {
+  .carousel {
+    &-item {
+      width: 100vw;
+    }
   }
 }
