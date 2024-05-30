@@ -68,7 +68,7 @@ const rerenderCarousel = async (btnType) => {
   const itemWidth = sliderList[0].offsetWidth;
   const space = 300;
 
-  sliderClone.style.transition = "all 0.6s ease-out";
+  sliderClone.style.transition = "all 0.6s cubic-bezier(0.29, 0.79, 0.53, 0.92)";
   sliderClone.style.transform = `translateX(${(itemWidth + space) * index}px)`;
 
   const lastItemCarouselActive = sliderClone.querySelector("li.active");

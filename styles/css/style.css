@@ -262,7 +262,7 @@ li {
   bottom: -12px;
   left: 50%;
   transform: translateX(-50%);
-  transition: all 0.6s ease-out;
+  transition: all 0.6s cubic-bezier(0.29, 0.79, 0.53, 0.92);
 }
 
 @media only screen and (max-width: 1200px) {
@@ -293,7 +293,7 @@ li {
   height: calc(var(--height-main) - 110px);
   border-radius: 100rem;
   scale: 0;
-  transition: all 0.6s ease-out;
+  transition: all 0.6s cubic-bezier(0.29, 0.79, 0.53, 0.92);
 }
 .circle-item {
   position: absolute;
@@ -330,7 +330,7 @@ li {
   rotate: 75deg;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.6s ease-out;
+  transition: all 0.6s cubic-bezier(0.29, 0.79, 0.53, 0.92);
 }
 .circle__orange {
   background-color: #ed5700;
@@ -386,7 +386,7 @@ li {
   left: 0;
   background-color: #262626;
   height: 100%;
-  transition: all 0.6s ease-out;
+  transition: all 0.6s cubic-bezier(0.29, 0.79, 0.53, 0.92);
 }
 .progress-front {
   position: relative;
@@ -398,7 +398,7 @@ li {
   transform: translate(0, -50%);
   opacity: 0;
   visibility: hidden;
-  transition: all 0.6s ease-out;
+  transition: all 0.6s cubic-bezier(0.29, 0.79, 0.53, 0.92);
 }
 .progress-front li.active {
   opacity: 1;
@@ -422,7 +422,7 @@ li {
   transform: translateY(-50%);
   opacity: 0;
   visibility: hidden;
-  transition: all 0.6s ease-out;
+  transition: all 0.6s cubic-bezier(0.29, 0.79, 0.53, 0.92);
 }
 .progress-tail li.active {
   opacity: 1;
