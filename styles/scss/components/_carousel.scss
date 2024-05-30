@@ -1,6 +1,7 @@
 .carousel {
   &-slider {
     display: flex;
+
     gap: 0 300px;
   }
   &-item {
@@ -14,12 +15,15 @@
   }
   &-image {
     position: absolute;
-    width: 1028px;
-    scale: 0.7;
     bottom: -12px;
     left: 50%;
+
+    width: 1028px;
+
     transform: translateX(-50%);
     transition: $springs-slow;
+
+    scale: 0.7;
   }
 }
 
@@ -29,8 +33,9 @@
       width: 762px;
     }
     &-image {
-      width: 100%;
       bottom: 0;
+
+      width: 100%;
     }
   }
 }
@@ -39,6 +44,7 @@
   .carousel {
     &-item {
       bottom: 10%;
+
       width: 550px;
     }
   }

@@ -17,7 +17,7 @@ const progressOccupy = progress.querySelector(".progress-occupy");
 const progressTail = progress.querySelector(".progress-tail");
 
 const initClones = () => {
-  Array.from(sliderList).reverse().forEach((e, i) => {
+  [...sliderList].reverse().forEach((e, i) => {
     const cloneSliderNode = e.cloneNode(true);
     const cloneCircleNode = circleList[i].cloneNode(true);
 
@@ -46,8 +46,8 @@ const sliderListClone = sliderClone.querySelectorAll("li");
 const circleClone = wrapper.querySelector(".wrapper-circles");
 const circleListClone = circleClone.querySelectorAll("li");
 
+const limited = sliderList.length;
 let index = 0;
-let limited = sliderList.length;
 let sliderScrollStatus = false;
 
 const checkNext = () => {
@@ -92,16 +92,15 @@ const rerenderProgress = () => {
 
 const resetAnimation = () => {
   // reset slider
-  let sliderItems = Array.from(sliderClone.children);
-  let circleItems = Array.from(circleClone.children);
-  let midIndex = Math.floor(sliderItems.length / 2);
-  let firstHalfSliders = sliderItems.slice(0, midIndex);
-  let lastHalfSliders = sliderItems.slice(midIndex);
-  let firstHalfCircles = circleItems.slice(0, midIndex);
+  const sliderItems = [...sliderClone.children];
+  const circleItems = [...circleClone.children];
+  const midIndex = Math.floor(sliderItems.length / 2);
+  const lastHalfSliders = sliderItems.slice(midIndex);
+  const firstHalfCircles = circleItems.slice(0, midIndex);
 
   setTimeout(() => {
-    lastHalfSliders.forEach(e => {
-      sliderClone.insertBefore(e, firstHalfSliders[0]);
+    lastHalfSliders.reverse().forEach(e => {
+      sliderClone.prepend(e);
     });
     sliderClone.style.transition = "none";
     sliderClone.style.transform = "translateX(0)";

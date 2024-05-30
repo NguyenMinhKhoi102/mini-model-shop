@@ -23,21 +23,21 @@ video {
 input,
 select,
 textarea {
-  background-color: transparent;
   outline: none;
+  background-color: transparent;
 }
 
 button {
-  cursor: pointer;
-  background-color: transparent;
   outline: none;
   border: 0;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 body {
   min-height: 100vh;
-  font-weight: 400;
   font-size: 16px;
+  font-weight: 400;
   line-height: 1;
 }
 
@@ -51,83 +51,83 @@ li {
 
 #app {
   position: relative;
-  margin-block: 146px 14px;
-  font-family: "MINISansSerif-Regular";
   overflow-x: hidden;
+  font-family: "MINISansSerif-Regular";
+  margin-block: 146px 14px;
 }
 
 .container {
   display: flex;
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 130px 282px;
   flex-direction: column;
   gap: 80px;
-  padding: 130px 282px;
-  max-width: 1920px;
-  width: 100%;
-  margin: 0 auto;
 }
 .container::before {
-  content: "";
   position: absolute;
-  inset: 0;
-  background-image: url("../../assets/images/background.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.5;
   z-index: -1;
+  opacity: 0.5;
+  background-image: url("../../assets/images/background.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  content: "";
+  inset: 0;
 }
 
 .title {
   position: absolute;
-  font-size: 72px;
-  line-height: 1.2;
-  font-weight: 900;
-  text-transform: uppercase;
   font-family: "MINI Serif Regular";
+  font-size: 72px;
+  font-weight: 900;
+  line-height: 1.2;
+  text-transform: uppercase;
 }
 .title__xxx {
-  display: none;
   position: relative;
+  display: none;
   text-align: center;
 }
 
 .wrapper {
-  --height-main: 690px;
   position: relative;
-  margin-left: auto;
-  height: var(--height-main);
-  width: 942px;
   right: 0;
+  width: 942px;
+  height: var(--height-main);
+  margin-left: auto;
+  --height-main: 690px;
 }
 .wrapper-btn {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
+  transform: translate(-50%, -50%);
   align-items: center;
   gap: 1110px;
 }
 .wrapper-btn__previous, .wrapper-btn__next {
   display: flex;
-  justify-content: center;
-  align-items: center;
   width: 52px;
   height: 52px;
   border-radius: 100rem;
-  background: #000000;
+  background: #000;
   cursor: pointer;
+  align-items: center;
+  justify-content: center;
 }
 .wrapper-btn__previous.disabled, .wrapper-btn__next.disabled {
-  cursor: unset;
   background-color: rgba(77, 77, 77, 0.3019607843);
+  cursor: unset;
 }
 .wrapper-carousel {
   position: absolute;
   top: 0;
   right: 0;
-  height: 100%;
   display: flex;
+  height: 100%;
   justify-content: flex-end;
 }
 .wrapper-circles {
@@ -137,15 +137,15 @@ li {
 
 .footer {
   display: flex;
+  padding-right: 210px;
   align-items: center;
   justify-content: space-between;
-  padding-right: 210px;
 }
 
 @media only screen and (max-width: 1600px) {
   .container {
-    padding-inline: 175px;
     gap: 60px;
+    padding-inline: 175px;
   }
   .title {
     display: none;
@@ -159,8 +159,8 @@ li {
 }
 @media only screen and (max-width: 1400px) {
   .container {
-    padding-inline: 16px;
     overflow-x: hidden;
+    padding-inline: 16px;
   }
   .wrapper {
     margin: 0 auto;
@@ -187,9 +187,9 @@ li {
 }
 @media only screen and (max-width: 1200px) {
   .wrapper {
-    --height-main: 600px;
-    max-width: 800px;
     width: 100%;
+    max-width: 800px;
+    --height-main: 600px;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -198,54 +198,54 @@ li {
     font-size: clamp(2.5rem, 1.5234375rem + 6.25vw, 4.5rem);
   }
   .wrapper {
-    --height-main: 500px;
     max-width: 576px;
+    --height-main: 500px;
   }
 }
 @media only screen and (max-width: 576px) {
   .wrapper {
-    --height-main: 100vw;
     max-width: 100vw;
+    --height-main: 100vw;
   }
   .wrapper-btn {
     width: 100%;
-    justify-content: space-between;
     gap: 0;
+    justify-content: space-between;
   }
 }
 .btn {
-  font-family: "MINISansSerif-Regular";
-  border-radius: 100px;
-  font-size: 18px;
-  line-height: 20px;
-  font-weight: 400;
-  padding: 16px 32px;
-  width: 282px;
-  text-align: center;
   display: inline-block;
-  color: #000000;
+  width: 282px;
+  padding: 16px 32px;
+  font-family: "MINISansSerif-Regular";
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #000;
+  text-align: center;
   border: 1px solid #262626;
+  border-radius: 100px;
 }
 .btn:hover {
-  color: #ffffff;
+  color: #fff;
   background-color: #262626;
 }
 .btn-list {
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 24px;
+  justify-content: center;
 }
 
 @media only screen and (max-width: 576px) {
   .btn {
+    width: 100%;
     white-space: nowrap;
     flex: 1;
-    width: 100%;
   }
   .btn-list {
-    flex-direction: column;
     width: 100%;
+    flex-direction: column;
   }
 }
 .carousel-slider {
@@ -262,12 +262,12 @@ li {
 }
 .carousel-image {
   position: absolute;
-  width: 1028px;
-  scale: 0.7;
   bottom: -12px;
   left: 50%;
+  width: 1028px;
   transform: translateX(-50%);
   transition: all 0.6s cubic-bezier(0.29, 0.79, 0.53, 0.92);
+  scale: 0.7;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -275,8 +275,8 @@ li {
     width: 762px;
   }
   .carousel-image {
-    width: 100%;
     bottom: 0;
+    width: 100%;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -292,50 +292,50 @@ li {
 }
 .circle {
   position: absolute;
-  left: 0;
   bottom: 0;
+  left: 0;
   width: calc(var(--height-main) - 110px);
   height: calc(var(--height-main) - 110px);
   border-radius: 100rem;
-  scale: 0;
   transition: all 0.6s cubic-bezier(0.29, 0.79, 0.53, 0.92);
+  scale: 0;
 }
 .circle-item {
   position: absolute;
   top: 50%;
   right: 0;
-  transform: translateY(-50%);
   width: calc(var(--height-main) - 58px);
   height: calc(var(--height-main) - 58px);
+  transform: translateY(-50%);
 }
 .circle-item.active .circle {
-  scale: 1;
-  opacity: 1;
   visibility: visible;
+  opacity: 1;
+  scale: 1;
 }
 .circle-item.active .circle-text {
-  opacity: 1;
   visibility: visible;
+  opacity: 1;
   rotate: 0deg;
 }
 .circle-item.hidden .circle {
-  opacity: 0;
   visibility: hidden;
+  opacity: 0;
 }
 .circle-item.hidden .circle-text {
-  opacity: 0;
   visibility: hidden;
+  opacity: 0;
   rotate: -75deg;
 }
 .circle-text {
   position: absolute;
   top: 0;
   right: 0;
-  width: calc(var(--height-main) - 6px);
-  rotate: 75deg;
-  opacity: 0;
   visibility: hidden;
+  width: calc(var(--height-main) - 6px);
+  opacity: 0;
   transition: all 0.6s cubic-bezier(0.29, 0.79, 0.53, 0.92);
+  rotate: 75deg;
 }
 .circle__orange {
   background-color: #ed5700;
@@ -358,8 +358,8 @@ li {
 
 @media only screen and (max-width: 1200px) {
   .circle-item {
-    left: 25%;
     right: unset;
+    left: 25%;
   }
 }
 @media only screen and (max-width: 576px) {
@@ -370,27 +370,27 @@ li {
 .progress {
   position: relative;
   display: flex;
-  align-items: center;
-  gap: 0 16px;
   height: 24px;
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
+  align-items: center;
+  gap: 0 16px;
 }
 .progress-container {
   position: relative;
-  background-color: rgba(77, 77, 77, 0.3);
-  border-radius: 100rem;
+  overflow: hidden;
   width: 192px;
   height: 2px;
-  overflow: hidden;
+  border-radius: 100rem;
+  background-color: rgba(77, 77, 77, 0.3);
 }
 .progress-occupy {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #262626;
   height: 100%;
+  background-color: #262626;
   transition: all 0.6s cubic-bezier(0.29, 0.79, 0.53, 0.92);
 }
 .progress-front {
@@ -400,21 +400,21 @@ li {
   position: absolute;
   top: 50%;
   left: 0;
-  transform: translate(0, -50%);
-  opacity: 0;
   visibility: hidden;
+  opacity: 0;
+  transform: translate(0, -50%);
   transition: all 0.6s cubic-bezier(0.29, 0.79, 0.53, 0.92);
 }
 .progress-front li.active {
-  opacity: 1;
   visibility: visible;
+  opacity: 1;
 }
 .progress-front li.active:last-child {
   transform: translate(0, -50%);
 }
 .progress-front li:last-child {
-  opacity: 1;
   visibility: visible;
+  opacity: 1;
   transform: translate(216px, -50%);
 }
 .progress-tail {
@@ -424,14 +424,14 @@ li {
   position: absolute;
   top: 50%;
   right: 0;
-  transform: translateY(-50%);
-  opacity: 0;
   visibility: hidden;
+  opacity: 0;
+  transform: translateY(-50%);
   transition: all 0.6s cubic-bezier(0.29, 0.79, 0.53, 0.92);
 }
 .progress-tail li.active {
-  opacity: 1;
   visibility: visible;
+  opacity: 1;
 }
 
 @media only screen and (max-width: 576px) {

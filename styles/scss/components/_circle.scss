@@ -1,42 +1,50 @@
 .circle {
   position: absolute;
-  left: 0;
   bottom: 0;
+  left: 0;
 
   width: calc(var(--height-main) - 110px);
   height: calc(var(--height-main) - 110px);
+
   border-radius: 100rem;
+  transition: $springs-slow;
 
   scale: 0;
-
-  transition: $springs-slow;
   &-item {
     position: absolute;
     top: 50%;
     right: 0;
-    transform: translateY(-50%);
 
     width: calc(var(--height-main) - 58px);
     height: calc(var(--height-main) - 58px);
+
+    transform: translateY(-50%);
     &.active {
       .circle {
-        scale: 1;
-        opacity: 1;
         visibility: visible;
+
+        opacity: 1;
+
+        scale: 1;
         &-text {
-          opacity: 1;
           visibility: visible;
+
+          opacity: 1;
+
           rotate: 0deg;
         }
       }
     }
     &.hidden {
       .circle {
-        opacity: 0;
         visibility: hidden;
+
+        opacity: 0;
         &-text {
-          opacity: 0;
           visibility: hidden;
+
+          opacity: 0;
+
           rotate: -75deg;
         }
       }
@@ -46,11 +54,15 @@
     position: absolute;
     top: 0;
     right: 0;
-    width: calc(var(--height-main) - 6px);
-    rotate: 75deg;
-    opacity: 0;
+
     visibility: hidden;
+
+    width: calc(var(--height-main) - 6px);
+
+    opacity: 0;
     transition: $springs-slow;
+
+    rotate: 75deg;
   }
   &__orange {
     background-color: $orange;
@@ -75,8 +87,8 @@
 @media only screen and (max-width: $xl) {
   .circle {
     &-item {
-      left: 25%;
       right: unset;
+      left: 25%;
     }
   }
 }

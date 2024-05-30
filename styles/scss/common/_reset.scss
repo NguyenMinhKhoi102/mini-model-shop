@@ -6,6 +6,7 @@
 * {
   margin: 0;
   padding: 0;
+
   font: inherit;
 }
 img,
@@ -13,23 +14,25 @@ picture,
 svg,
 video {
   display: block;
+
   max-width: 100%;
 }
 input,
 select,
 textarea {
-  background-color: transparent;
   outline: none;
+  background-color: transparent;
 }
 button {
-  cursor: pointer;
-  background-color: transparent;
   outline: none;
   border: 0;
+  background-color: transparent;
+  cursor: pointer;
 }
 body {
   min-height: 100vh;
-  font-weight: 400;
+
   font-size: 16px;
+  font-weight: 400;
   line-height: 1;
 }
