@@ -9,7 +9,7 @@
 
   scale: 0;
 
-  transition: $effect-1;
+  transition: $springs-slow;
   &-item {
     position: absolute;
     top: 50%;
@@ -50,7 +50,7 @@
     rotate: 75deg;
     opacity: 0;
     visibility: hidden;
-    transition: $effect-1;
+    transition: $springs-slow;
   }
   &__orange {
     background-color: $orange;

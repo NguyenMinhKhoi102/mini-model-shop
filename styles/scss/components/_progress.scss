@@ -29,7 +29,7 @@
 
     height: 100%;
 
-    transition: $effect-1;
+    transition: $springs-slow;
   }
   &-front {
     position: relative;
@@ -40,7 +40,7 @@
       transform: translate(0, -50%);
       opacity: 0;
       visibility: hidden;
-      transition: $effect-1;
+      transition: $springs-slow;
       &.active {
         opacity: 1;
         visibility: visible;
@@ -64,7 +64,7 @@
       transform: translateY(-50%);
       opacity: 0;
       visibility: hidden;
-      transition: $effect-1;
+      transition: $springs-slow;
       &.active {
         opacity: 1;
         visibility: visible;

@@ -42,13 +42,18 @@ body {
 }
 
 body {
-  padding-block: 146px 14px;
   background-color: #f6f6f6;
-  font-family: "MINISansSerif-Regular";
 }
 
 li {
   list-style: none;
+}
+
+#app {
+  position: relative;
+  margin-block: 146px 14px;
+  font-family: "MINISansSerif-Regular";
+  overflow-x: hidden;
 }
 
 .container {
