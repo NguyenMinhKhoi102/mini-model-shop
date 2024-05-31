@@ -127,7 +127,7 @@ const handleBtnWrapper = (btnType) => {
     default:
       break;
   }
-  if (index != currentIndex) {
+  if (index !== currentIndex) {
     rerenderCarousel();
     rerenderProgress();
     index < limited || resetAnimation();
