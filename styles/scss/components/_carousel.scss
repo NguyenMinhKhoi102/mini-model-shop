@@ -6,7 +6,8 @@
   &-item {
     position: relative;
 
-    width: 942px;
+    width: 100vw;
+    max-width: 942px;
     height: 100%;
     &.active > .carousel-image {
       scale: 1;
@@ -19,40 +20,19 @@
 
     scale: 0.7;
 
-    width: 1028px;
+    width: calc(100% + 86px);
 
     transform: translateX(-50%);
     transition: $springs-slow;
     }
   }
 
-@media only screen and (max-width: $xl) {
-  .carousel {
-    &-item {
-      width: 762px;
-      }
-    &-image {
-      bottom: 0;
-
-      width: 100%;
-      }
-    }
-  }
-
 @media only screen and (max-width: $md) {
   .carousel {
-    &-item {
+    &-image {
       bottom: 10%;
 
-      width: 550px;
-      }
-    }
-  }
-
-@media only screen and (max-width: $sm) {
-  .carousel {
-    &-item {
-      width: 100vw;
+      width: calc(100%);
       }
     }
   }

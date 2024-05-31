@@ -44,10 +44,11 @@
   right: 0;
 
   width: 942px;
-  height: var(--height-main);
+  max-width: 100%;
+  height: 100vw;
+  max-height: 690px;
   margin-left: auto;
 
-  --height-main: 690px;
   &-btn {
     position: absolute;
     top: 50%;
@@ -122,8 +123,6 @@
 
 @media only screen and (max-width: $xxl) {
   .container {
-    overflow-x: hidden;
-
     padding-inline: 16px;
     }
   .wrapper {
@@ -153,32 +152,15 @@
     }
   }
 
-@media only screen and (max-width: $xl) {
-  .wrapper {
-    width: 100%;
-    max-width: 800px;
-
-    --height-main: 600px;
-    }
-  }
-
 @media only screen and (max-width: $md) {
   .title {
     font-size: 2.5rem;
     font-size: clamp(2.5rem, 1.5234375rem + 6.25vw, 4.5rem);
     }
-  .wrapper {
-    max-width: 576px;
-
-    --height-main: 500px;
-    }
   }
 
 @media only screen and (max-width: $sm) {
   .wrapper {
-    max-width: 100vw;
-
-    --height-main: 100vw;
     &-btn {
       justify-content: space-between;
       gap: 0;

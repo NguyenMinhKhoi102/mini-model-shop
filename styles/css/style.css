@@ -95,9 +95,10 @@ li {
   position: relative;
   right: 0;
   width: 942px;
-  height: var(--height-main);
+  max-width: 100%;
+  height: 100vw;
+  max-height: 690px;
   margin-left: auto;
-  --height-main: 690px;
 }
 .wrapper-btn {
   position: absolute;
@@ -159,7 +160,6 @@ li {
 }
 @media only screen and (max-width: 1400px) {
   .container {
-    overflow-x: hidden;
     padding-inline: 16px;
   }
   .wrapper {
@@ -185,28 +185,13 @@ li {
     gap: 60px;
   }
 }
-@media only screen and (max-width: 1200px) {
-  .wrapper {
-    width: 100%;
-    max-width: 800px;
-    --height-main: 600px;
-  }
-}
 @media only screen and (max-width: 768px) {
   .title {
     font-size: 2.5rem;
     font-size: clamp(2.5rem, 1.5234375rem + 6.25vw, 4.5rem);
   }
-  .wrapper {
-    max-width: 576px;
-    --height-main: 500px;
-  }
 }
 @media only screen and (max-width: 576px) {
-  .wrapper {
-    max-width: 100vw;
-    --height-main: 100vw;
-  }
   .wrapper-btn {
     justify-content: space-between;
     gap: 0;
@@ -254,7 +239,8 @@ li {
 }
 .carousel-item {
   position: relative;
-  width: 942px;
+  width: 100vw;
+  max-width: 942px;
   height: 100%;
 }
 .carousel-item.active > .carousel-image {
@@ -265,29 +251,15 @@ li {
   bottom: -12px;
   left: 50%;
   scale: 0.7;
-  width: 1028px;
+  width: calc(100% + 86px);
   transform: translateX(-50%);
   transition: all 0.6s cubic-bezier(0.29, 0.79, 0.53, 0.92);
 }
 
-@media only screen and (max-width: 1200px) {
-  .carousel-item {
-    width: 762px;
-  }
-  .carousel-image {
-    bottom: 0;
-    width: 100%;
-  }
-}
 @media only screen and (max-width: 768px) {
-  .carousel-item {
+  .carousel-image {
     bottom: 10%;
-    width: 550px;
-  }
-}
-@media only screen and (max-width: 576px) {
-  .carousel-item {
-    width: 100vw;
+    width: 100%;
   }
 }
 .circle {
@@ -295,8 +267,10 @@ li {
   bottom: 0;
   left: 0;
   scale: 0;
-  width: calc(var(--height-main) - 110px);
-  height: calc(var(--height-main) - 110px);
+  width: calc(100% - 52px);
+  max-width: 580px;
+  height: calc(100% - 52px);
+  max-height: 580px;
   border-radius: 100rem;
   transition: all 0.6s cubic-bezier(0.29, 0.79, 0.53, 0.92);
 }
@@ -304,8 +278,11 @@ li {
   position: absolute;
   top: 50%;
   right: 0;
-  width: calc(var(--height-main) - 58px);
-  height: calc(var(--height-main) - 58px);
+  overflow: hidden;
+  width: calc(100vw - 58px);
+  max-width: 632px;
+  height: calc(100vw - 58px);
+  max-height: 632px;
   transform: translateY(-50%);
 }
 .circle-item.active .circle {
@@ -333,7 +310,8 @@ li {
   right: 0;
   visibility: hidden;
   rotate: 75deg;
-  width: calc(var(--height-main) - 6px);
+  width: calc(100% + 52px);
+  max-width: max-content;
   opacity: 0;
   transition: all 0.6s cubic-bezier(0.29, 0.79, 0.53, 0.92);
 }
@@ -356,17 +334,6 @@ li {
   background-color: #e6001d;
 }
 
-@media only screen and (max-width: 1200px) {
-  .circle-item {
-    right: unset;
-    left: 25%;
-  }
-}
-@media only screen and (max-width: 576px) {
-  .circle-item {
-    left: 10%;
-  }
-}
 .progress {
   position: relative;
   display: flex;

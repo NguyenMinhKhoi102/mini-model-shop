@@ -5,8 +5,10 @@
 
   scale: 0;
 
-  width: calc(var(--height-main) - 110px);
-  height: calc(var(--height-main) - 110px);
+  width: calc(100% - 52px);
+  max-width: 580px;
+  height: calc(100% - 52px);
+  max-height: 580px;
 
   border-radius: 100rem;
 
@@ -16,8 +18,12 @@
     top: 50%;
     right: 0;
 
-    width: calc(var(--height-main) - 58px);
-    height: calc(var(--height-main) - 58px);
+    overflow: hidden;
+
+    width: calc(100vw - 58px);
+    max-width: 632px;
+    height: calc(100vw - 58px);
+    max-height: 632px;
 
     transform: translateY(-50%);
     &.active {
@@ -60,7 +66,8 @@
 
     rotate: 75deg;
 
-    width: calc(var(--height-main) - 6px);
+    width: calc(100% + 52px);
+    max-width: max-content;
 
     opacity: 0;
 
@@ -86,19 +93,19 @@
     }
   }
 
-@media only screen and (max-width: $xl) {
-  .circle {
-    &-item {
-      right: unset;
-      left: 25%;
-      }
-    }
-  }
+// @media only screen and (max-width: $xl) {
+//   .circle {
+//     &-item {
+//       right: unset;
+//       left: 25%;
+//       }
+//     }
+//   }
 
-@media only screen and (max-width: $sm) {
-  .circle {
-    &-item {
-      left: 10%;
-      }
-    }
-  }
+// @media only screen and (max-width: $sm) {
+//   .circle {
+//     &-item {
+//       left: 10%;
+//       }
+//     }
+//   }
