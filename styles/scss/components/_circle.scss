@@ -33,9 +33,9 @@
           rotate: 0deg;
 
           opacity: 1;
+          }
         }
       }
-    }
     &.hidden {
       .circle {
         visibility: hidden;
@@ -47,10 +47,10 @@
           rotate: -75deg;
 
           opacity: 0;
+          }
         }
       }
     }
-  }
   &-text {
     position: absolute;
     top: 0;
@@ -65,40 +65,40 @@
     opacity: 0;
 
     transition: $springs-slow;
-  }
+    }
   &__orange {
     background-color: $orange;
-  }
+    }
   &__pink {
     background-color: $pink;
-  }
+    }
   &__light-green {
     background-color: $light-green;
-  }
+    }
   &__light-blue {
     background-color: $light-blue;
-  }
+    }
   &__purple {
     background-color: $purple;
-  }
+    }
   &__red {
     background-color: $red;
+    }
   }
-}
 
 @media only screen and (max-width: $xl) {
   .circle {
     &-item {
       right: unset;
       left: 25%;
+      }
     }
   }
-}
 
 @media only screen and (max-width: $sm) {
   .circle {
     &-item {
       left: 10%;
+      }
     }
   }
-}

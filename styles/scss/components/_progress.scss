@@ -21,7 +21,7 @@
     background-color: rgba(77, 77, 77, 0.3);
 
     border-radius: 100rem;
-  }
+    }
   &-occupy {
     position: absolute;
     top: 0;
@@ -32,7 +32,7 @@
     background-color: #262626;
 
     transition: $springs-slow;
-  }
+    }
   &-front {
     position: relative;
     li {
@@ -52,17 +52,17 @@
         opacity: 1;
         &:last-child {
           transform: translate(0, -50%);
+          }
         }
       }
-    }
     li:last-child {
       visibility: visible;
 
       opacity: 1;
 
       transform: translate(216px, -50%);
+      }
     }
-  }
   &-tail {
     position: relative;
     li {
@@ -80,20 +80,20 @@
         visibility: visible;
 
         opacity: 1;
+        }
       }
     }
   }
-}
 
 @media only screen and (max-width: $sm) {
   .progress {
     &-container {
       width: calc(100vw - 180px);
-    }
+      }
     &-front {
       li:last-child {
         transform: translate(calc(100vw - 155px), -50%);
+        }
       }
     }
   }
-}

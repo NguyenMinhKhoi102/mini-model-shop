@@ -2,7 +2,7 @@
   &-slider {
     display: flex;
     gap: 0 300px;
-  }
+    }
   &-item {
     position: relative;
 
@@ -10,8 +10,8 @@
     height: 100%;
     &.active > .carousel-image {
       scale: 1;
+      }
     }
-  }
   &-image {
     position: absolute;
     bottom: -12px;
@@ -23,21 +23,21 @@
 
     transform: translateX(-50%);
     transition: $springs-slow;
+    }
   }
-}
 
 @media only screen and (max-width: $xl) {
   .carousel {
     &-item {
       width: 762px;
-    }
+      }
     &-image {
       bottom: 0;
 
       width: 100%;
+      }
     }
   }
-}
 
 @media only screen and (max-width: $md) {
   .carousel {
@@ -45,14 +45,14 @@
       bottom: 10%;
 
       width: 550px;
+      }
     }
   }
-}
 
 @media only screen and (max-width: $sm) {
   .carousel {
     &-item {
       width: 100vw;
+      }
     }
   }
-}

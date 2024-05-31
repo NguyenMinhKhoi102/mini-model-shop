@@ -20,7 +20,7 @@
   "sort-order": [
     ["--*"],
     ["$charset", "$import", "$namespace", "$extend", "$variable", "$include"],
-    ["position", "top", "right", "bottom", "left", "z-index"],
+    ["position", "inset", "top", "right", "bottom", "left", "z-index"],
     [
       "display",
       "justify-content",

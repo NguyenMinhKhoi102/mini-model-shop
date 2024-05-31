@@ -4,7 +4,7 @@
   width: 282px;
   padding: 16px 32px;
 
-  font-family: "MINISansSerif-Regular";
+  font-family: 'MINISansSerif-Regular';
   font-size: 18px;
   font-weight: 400;
   line-height: 20px;
@@ -17,14 +17,14 @@
     color: $gray-1;
 
     background-color: $gray-9;
-  }
+    }
   &-list {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 24px;
+    }
   }
-}
 
 @media only screen and (max-width: $sm) {
   .btn {
@@ -37,6 +37,6 @@
       flex-direction: column;
 
       width: 100%;
+      }
     }
   }
-}
