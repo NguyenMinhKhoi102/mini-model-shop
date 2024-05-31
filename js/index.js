@@ -94,7 +94,7 @@ const resetAnimation = () => {
   }, 600);
 
   // reset progress
-  progressOccupy.style.width = "0";
+  progressOccupy.style.width = `${1 / limited * 100}%`;
   progressTail.firstElementChild.classList.remove("active");
 }
 
