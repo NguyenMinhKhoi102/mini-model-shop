@@ -23,14 +23,14 @@ video {
 input,
 select,
 textarea {
-  outline: none;
   background-color: transparent;
+  outline: none;
 }
 
 button {
-  outline: none;
-  border: 0;
   background-color: transparent;
+  border: 0;
+  outline: none;
   cursor: pointer;
 }
 
@@ -52,27 +52,27 @@ li {
 #app {
   position: relative;
   overflow-x: hidden;
-  font-family: "MINISansSerif-Regular";
   margin-block: 146px 14px;
+  font-family: "MINISansSerif-Regular";
 }
 
 .container {
   display: flex;
+  flex-direction: column;
+  gap: 80px;
   width: 100%;
   max-width: 1920px;
   margin: 0 auto;
   padding: 130px 282px;
-  flex-direction: column;
-  gap: 80px;
 }
 .container::before {
   position: absolute;
   z-index: -1;
-  opacity: 0.5;
   background-image: url("../../assets/images/background.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  opacity: 0.5;
   content: "";
   inset: 0;
 }
@@ -104,19 +104,19 @@ li {
   top: 50%;
   left: 50%;
   display: flex;
-  transform: translate(-50%, -50%);
   align-items: center;
   gap: 1110px;
+  transform: translate(-50%, -50%);
 }
 .wrapper-btn__previous, .wrapper-btn__next {
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 52px;
   height: 52px;
-  border-radius: 100rem;
   background: #000;
+  border-radius: 100rem;
   cursor: pointer;
-  align-items: center;
-  justify-content: center;
 }
 .wrapper-btn__previous.disabled, .wrapper-btn__next.disabled {
   background-color: rgba(77, 77, 77, 0.3019607843);
@@ -127,8 +127,8 @@ li {
   top: 0;
   right: 0;
   display: flex;
-  height: 100%;
   justify-content: flex-end;
+  height: 100%;
 }
 .wrapper-circles {
   position: absolute;
@@ -137,9 +137,9 @@ li {
 
 .footer {
   display: flex;
-  padding-right: 210px;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  padding-right: 210px;
 }
 
 @media only screen and (max-width: 1600px) {
@@ -169,8 +169,8 @@ li {
     top: unset;
     bottom: -90px;
     left: 50%;
-    transform: translate(-50%, 0);
     gap: 300px;
+    transform: translate(-50%, 0);
   }
   .wrapper-btn__previous, .wrapper-btn__next {
     width: 35px;
@@ -208,9 +208,9 @@ li {
     --height-main: 100vw;
   }
   .wrapper-btn {
-    width: 100%;
-    gap: 0;
     justify-content: space-between;
+    gap: 0;
+    width: 100%;
   }
 }
 .btn {
@@ -232,20 +232,20 @@ li {
 }
 .btn-list {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 24px;
-  justify-content: center;
 }
 
 @media only screen and (max-width: 576px) {
   .btn {
+    flex: 1;
     width: 100%;
     white-space: nowrap;
-    flex: 1;
   }
   .btn-list {
-    width: 100%;
     flex-direction: column;
+    width: 100%;
   }
 }
 .carousel-slider {
@@ -264,10 +264,10 @@ li {
   position: absolute;
   bottom: -12px;
   left: 50%;
+  scale: 0.7;
   width: 1028px;
   transform: translateX(-50%);
   transition: all 0.6s cubic-bezier(0.29, 0.79, 0.53, 0.92);
-  scale: 0.7;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -294,11 +294,11 @@ li {
   position: absolute;
   bottom: 0;
   left: 0;
+  scale: 0;
   width: calc(var(--height-main) - 110px);
   height: calc(var(--height-main) - 110px);
   border-radius: 100rem;
   transition: all 0.6s cubic-bezier(0.29, 0.79, 0.53, 0.92);
-  scale: 0;
 }
 .circle-item {
   position: absolute;
@@ -310,13 +310,13 @@ li {
 }
 .circle-item.active .circle {
   visibility: visible;
-  opacity: 1;
   scale: 1;
+  opacity: 1;
 }
 .circle-item.active .circle-text {
   visibility: visible;
-  opacity: 1;
   rotate: 0deg;
+  opacity: 1;
 }
 .circle-item.hidden .circle {
   visibility: hidden;
@@ -324,18 +324,18 @@ li {
 }
 .circle-item.hidden .circle-text {
   visibility: hidden;
-  opacity: 0;
   rotate: -75deg;
+  opacity: 0;
 }
 .circle-text {
   position: absolute;
   top: 0;
   right: 0;
   visibility: hidden;
+  rotate: 75deg;
   width: calc(var(--height-main) - 6px);
   opacity: 0;
   transition: all 0.6s cubic-bezier(0.29, 0.79, 0.53, 0.92);
-  rotate: 75deg;
 }
 .circle__orange {
   background-color: #ed5700;
@@ -370,20 +370,20 @@ li {
 .progress {
   position: relative;
   display: flex;
+  align-items: center;
+  gap: 0 16px;
   height: 24px;
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
-  align-items: center;
-  gap: 0 16px;
 }
 .progress-container {
   position: relative;
   overflow: hidden;
   width: 192px;
   height: 2px;
-  border-radius: 100rem;
   background-color: rgba(77, 77, 77, 0.3);
+  border-radius: 100rem;
 }
 .progress-occupy {
   position: absolute;

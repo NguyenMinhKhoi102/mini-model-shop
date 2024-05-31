@@ -1,25 +1,30 @@
 const wrapper = document.querySelector(".wrapper");
-
 const wrapperCircle = wrapper.querySelector(".wrapper-circles");
 const wrapperCarousel = wrapper.querySelector("#carousel");
 const wrapperBtnPrevious = wrapper.querySelector("#wrapper-btn-previous");
 const wrapperBtnNext = wrapper.querySelector("#wrapper-btn-next");
-
 const slider = wrapperCarousel.querySelector(".carousel-slider");
 
-const sliderList = slider.querySelectorAll("li");
-const circleList = wrapperCircle.querySelectorAll("li");
-
 const progress = document.querySelector(".progress");
-
 const progressFront = progress.querySelector(".progress-front");
 const progressOccupy = progress.querySelector(".progress-occupy");
 const progressTail = progress.querySelector(".progress-tail");
 
+const limited = slider.children.length;
+
+let index = 0;
+let sliderScrollStatus = false;
+
+const checkNext = () => {
+  index === 0 ? wrapperBtnNext.classList.add("disabled") : wrapperBtnNext.classList.remove("disabled");
+}
+
+checkNext();
+
 const initClones = () => {
-  [...sliderList].reverse().forEach((e, i) => {
+  [...slider.children].reverse().forEach((e, i) => {
     const cloneSliderNode = e.cloneNode(true);
-    const cloneCircleNode = circleList[i].cloneNode(true);
+    const cloneCircleNode = wrapperCircle.children[i].cloneNode(true);
 
     cloneSliderNode.classList = "carousel-item";
     cloneCircleNode.classList = "circle-item";
@@ -34,80 +39,55 @@ const initClones = () => {
   });
 
   const tail = document.createElement("li");
-  tail.innerText = sliderList.length;
+  tail.innerText = limited;
   progressTail.appendChild(tail);
-  progressOccupy.style.width = `${100 / sliderList.length}%`;
+  progressOccupy.style.width = `${100 / limited}%`;
 }
 
 initClones();
 
-const sliderClone = wrapperCarousel.querySelector(".carousel-slider");
-const sliderListClone = sliderClone.querySelectorAll("li");
-const circleClone = wrapper.querySelector(".wrapper-circles");
-const circleListClone = circleClone.querySelectorAll("li");
-
-const limited = sliderList.length;
-let index = 0;
-let sliderScrollStatus = false;
-
-const checkNext = () => {
-  index === 0 ? wrapperBtnNext.classList.add("disabled") : wrapperBtnNext.classList.remove("disabled");
-}
-
-checkNext();
-
-const rerenderCarousel = async (btnType) => {
-  if (btnType === "previous") {
-    circleClone.children[index++].classList.add("hidden");
-    circleClone.children[index].classList.add("active");
-  } else if (btnType === "next" && index > 0) {
-    circleClone.children[index--].classList.remove("active");
-    circleClone.children[index].classList.remove("hidden");
-  }
-
-  const itemWidth = sliderList[0].offsetWidth;
+const rerenderCarousel = () => {
+  const sliderItems = [...slider.children];
+  const itemWidth = sliderItems[0].offsetWidth;
   const space = 300;
+  const lastItemSliderActive = slider.querySelector("li.active");
 
-  sliderClone.style.transition = "all 0.6s cubic-bezier(0.29, 0.79, 0.53, 0.92)";
-  sliderClone.style.transform = `translateX(${(itemWidth + space) * index}px)`;
-
-  const lastItemCarouselActive = sliderClone.querySelector("li.active");
-
-  lastItemCarouselActive.classList.remove("active");
-  sliderClone.children[sliderListClone.length - index - 1].classList.add("active");
+  slider.style.transition = "all 0.6s cubic-bezier(0.29, 0.79, 0.53, 0.92)";
+  slider.style.transform = `translateX(${(itemWidth + space) * index}px)`;
+  lastItemSliderActive.classList.remove("active");
+  sliderItems[sliderItems.length - index - 1].classList.add("active");
 
   checkNext();
 }
 
 const rerenderProgress = () => {
-  console.log(index);
   const progressFrontList = progressFront.querySelectorAll("li");
   const lastProgressFrontActive = progressFront.querySelector("li.active");
 
-  progressOccupy.style.width = `${(index + 1) / sliderList.length * 100}%`;
+  progressOccupy.style.width = `${(index + 1) / limited * 100}%`;
   lastProgressFrontActive.classList.remove("active");
-  progressFrontList[index % sliderList.length].classList.add("active");
-  index !== sliderList.length - 1 || progressTail.firstElementChild.classList.add("active");
+  progressFrontList[index % limited].classList.add("active");
+  index !== limited - 1 || progressTail.firstElementChild.classList.add("active");
 }
 
 const resetAnimation = () => {
-  // reset slider
-  const sliderItems = [...sliderClone.children];
-  const circleItems = [...circleClone.children];
-  const midIndex = Math.floor(sliderItems.length / 2);
-  const lastHalfSliders = sliderItems.slice(midIndex);
-  const firstHalfCircles = circleItems.slice(0, midIndex);
+  const sliderItems = [...slider.children];
+  const circleItems = [...wrapperCircle.children];
+  const lastHalfSliders = sliderItems.slice(Math.floor(sliderItems.length / 2));
+  const firstHalfCircles = circleItems.slice(0, Math.floor(circleItems.length / 2));
 
   setTimeout(() => {
+    // reset slider
     lastHalfSliders.reverse().forEach(e => {
-      sliderClone.prepend(e);
+      slider.prepend(e);
     });
-    sliderClone.style.transition = "none";
-    sliderClone.style.transform = "translateX(0)";
+    slider.style.transition = "none";
+    slider.style.transform = "translateX(0)";
 
+    // reset circle
     firstHalfCircles.forEach(e => {
       e.classList = "circle-item";
-      circleClone.appendChild(e);
+      wrapperCircle.appendChild(e);
     })
     index = 0;
     checkNext();
@@ -129,19 +109,29 @@ const preventContiniousPressing = (button, handleBtnWrapper) => {
 };
 
 const handleBtnWrapper = (btnType) => {
+  const currentIndex = index;
+  const circleItems = [...wrapperCircle.children]
   switch (btnType) {
     case "previous":
       preventContiniousPressing(wrapperBtnPrevious, handlePreviousClick);
+      circleItems[index++].classList.add("hidden");
+      circleItems[index].classList.add("active");
       break;
     case "next":
       preventContiniousPressing(wrapperBtnNext, handleNextClick);
+      if (index > 0) {
+        circleItems[index--].classList.remove("active");
+        circleItems[index].classList.remove("hidden");
+      }
       break;
     default:
       break;
   }
-  rerenderCarousel(btnType);
-  rerenderProgress();
-  index < limited || resetAnimation();
+  if (index != currentIndex) {
+    rerenderCarousel();
+    rerenderProgress();
+    index < limited || resetAnimation();
+  }
 };
 
 const handlePreviousClick = () => handleBtnWrapper("previous");

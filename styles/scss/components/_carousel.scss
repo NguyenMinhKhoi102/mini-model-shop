@@ -1,7 +1,6 @@
 .carousel {
   &-slider {
     display: flex;
-
     gap: 0 300px;
   }
   &-item {
@@ -18,12 +17,12 @@
     bottom: -12px;
     left: 50%;
 
+    scale: 0.7;
+
     width: 1028px;
 
     transform: translateX(-50%);
     transition: $springs-slow;
-
-    scale: 0.7;
   }
 }
 

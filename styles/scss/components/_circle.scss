@@ -3,13 +3,14 @@
   bottom: 0;
   left: 0;
 
+  scale: 0;
+
   width: calc(var(--height-main) - 110px);
   height: calc(var(--height-main) - 110px);
 
   border-radius: 100rem;
-  transition: $springs-slow;
 
-  scale: 0;
+  transition: $springs-slow;
   &-item {
     position: absolute;
     top: 50%;
@@ -23,15 +24,15 @@
       .circle {
         visibility: visible;
 
-        opacity: 1;
-
         scale: 1;
+
+        opacity: 1;
         &-text {
           visibility: visible;
 
-          opacity: 1;
-
           rotate: 0deg;
+
+          opacity: 1;
         }
       }
     }
@@ -43,9 +44,9 @@
         &-text {
           visibility: hidden;
 
-          opacity: 0;
-
           rotate: -75deg;
+
+          opacity: 0;
         }
       }
     }
@@ -57,12 +58,13 @@
 
     visibility: hidden;
 
+    rotate: 75deg;
+
     width: calc(var(--height-main) - 6px);
 
     opacity: 0;
-    transition: $springs-slow;
 
-    rotate: 75deg;
+    transition: $springs-slow;
   }
   &__orange {
     background-color: $orange;
