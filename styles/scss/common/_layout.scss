@@ -12,20 +12,20 @@
     inset: 0;
     z-index: -1;
 
-    background-image: url('../../assets/images/background.png');
+    background-image: url("../../assets/images/background.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 
     opacity: 0.5;
-    content: '';
-    }
+    content: "";
   }
+}
 
 .title {
   position: absolute;
 
-  font-family: 'MINI Serif Regular';
+  font-family: "MINI Serif Regular";
   font-size: 72px;
   font-weight: 900;
   line-height: 1.2;
@@ -36,8 +36,8 @@
     display: none;
 
     text-align: center;
-    }
   }
+}
 
 .wrapper {
   position: relative;
@@ -77,9 +77,9 @@
         background-color: $gray-6-alpha-30;
 
         cursor: unset;
-        }
       }
     }
+  }
   &-carousel {
     position: absolute;
     top: 0;
@@ -89,12 +89,12 @@
     justify-content: flex-end;
 
     height: 100%;
-    }
+  }
   &-circles {
     position: absolute;
     inset: 0;
-    }
   }
+}
 
 .footer {
   display: flex;
@@ -102,29 +102,29 @@
   align-items: center;
 
   padding-right: 210px;
-  }
+}
 
 @media only screen and (max-width: $xxx) {
   .container {
     gap: 60px;
 
     padding-inline: 175px;
-    }
+  }
   .title {
     display: none;
     &__xxx {
       display: block;
-      }
-    }
-  .footer {
-    padding-right: 0;
     }
   }
+  .footer {
+    padding-right: 0;
+  }
+}
 
 @media only screen and (max-width: $xxl) {
   .container {
     padding-inline: 16px;
-    }
+  }
   .wrapper {
     margin: 0 auto;
     &-btn {
@@ -142,22 +142,22 @@
         img {
           width: 12px;
           height: 12px;
-          }
         }
       }
     }
+  }
   .footer {
     flex-direction: column;
     gap: 60px;
-    }
   }
+}
 
 @media only screen and (max-width: $md) {
   .title {
     font-size: 2.5rem;
     font-size: clamp(2.5rem, 1.5234375rem + 6.25vw, 4.5rem);
-    }
   }
+}
 
 @media only screen and (max-width: $sm) {
   .wrapper {
@@ -166,6 +166,6 @@
       gap: 0;
 
       width: 100%;
-      }
     }
   }
+}

@@ -2,7 +2,7 @@
   &-slider {
     display: flex;
     gap: 0 300px;
-    }
+  }
   &-item {
     position: relative;
 
@@ -11,8 +11,8 @@
     height: 100%;
     &.active > .carousel-image {
       scale: 1;
-      }
     }
+  }
   &-image {
     position: absolute;
     bottom: -12px;
@@ -24,15 +24,15 @@
 
     transform: translateX(-50%);
     transition: $springs-slow;
-    }
   }
+}
 
 @media only screen and (max-width: $md) {
   .carousel {
     &-image {
       bottom: 10%;
 
-      width: calc(100%);
-      }
+      width: 100%;
     }
   }
+}
